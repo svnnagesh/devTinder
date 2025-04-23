@@ -38,8 +38,14 @@ app.use('/test', (req, res) => {
     res.send('Hello test');
 });
 
-app.use('/', (req, res) => {
-    res.send('Hello /');
+// app.use('/', (req, res) => {
+//     res.send('Hello /');
+// })
+
+app.use('/', (err, req, res, next) => {
+    if(err) {
+        res.status(500).send('Something went wrong !');
+    }
 })
 
 app.use((req, res) => {
